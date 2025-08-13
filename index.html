@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://kit.fontawesome.com/f8ddf9854a.js" crossorigin="anonymous"></script>
+  <meta charset="utf-8">
+  <meta name="description"
+    content="LongEmotion, a benchmark for measuring emotional intelligence of large language models in long-context interaction.">
+  <meta name="keywords" content="LongEmotion, Emotional Intelligence, Long-Context, Benchmark">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LongEmotion</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script> -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1/dist/chartjs-plugin-annotation.min.js"></script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link href="https://unpkg.com/tabulator-tables@5.5.2/dist/css/tabulator_bootstrap4.min.css" rel="stylesheet">
+  <script type="text/javascript" src="https://unpkg.com/tabulator-tables@5.5.2/dist/js/tabulator.min.js"></script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css?v=1.5">
+  <link rel="icon" href="static/images/LongEmotion_Logo.svg">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/fff5b27ec1.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link href="https://unpkg.com/tabulator-tables@5.5.2/dist/css/tabulator_bootstrap4.min.css" rel="stylesheet">
+  <script type="text/javascript" src="https://unpkg.com/tabulator-tables@5.5.2/dist/js/tabulator.min.js"></script>
+
+  <script src="./static/js/benmark_table.js" type="module"></script>
+  <!-- <script src="./static/js/index.js"></script> -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <!-- <script src="./static/js/index.js"></script> -->
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+
+<body>
+
+
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title is-bold">
+              <img src="static/images/swingarena_logo.jpg" style="width:1em;vertical-align: middle" alt="Logo"/>
+              <span class="mmmu" style="vertical-align: middle">LongEmotion</span>
+            </h1>
+            <h2 class="subtitle is-3 publication-subtitle">
+              Measuring Emotional Intelligence of Large Language Models in Long-Context Interaction
+            </h2>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?user=7rpa_rIAAAAJ&hl=zh-CN#">Weichu Liu</a><sup>1*</sup>,</span>
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?hl=zh-CN&user=dFX1hXkAAAAJ">Jing Xiong</a><sup>2*</sup>,</span>
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?hl=zh-CN&user=Kb2v5_EAAAAJ">Yuxuan Hu</a><sup>3</sup>,</span>
+              <span class="author-block">
+                <a href="https://scholar.google.com.hk/citations?user=fJsvj4YAAAAJ&hl=zh-CN">Zixuan Li</a><sup>4</sup>,</span>
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?hl=zh-CN&user=jkbw8AUAAAAJ">Minghuan Tan</a><sup>5</sup>,</span>
+              <span class="author-block">
+                <a href="https://www.researchgate.net/profile/Ningning-Mao">Ningning Mao</a><sup>6</sup>,</span>
+              <br>
+              <span class="author-block">
+                <a href="https://zhaochenyang20.github.io/Chayenne/">Chenyang Zhao</a><sup>7</sup>,</span>
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?hl=zh-CN&user=EVj1cNoAAAAJ">Zhongwei Wan</a><sup>8</sup>,</span>
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?hl=zh-CN&user=gjmfLroAAAAJ">Chaofan Tao</a><sup>2</sup>,</span>
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?user=EaEW8QIAAAAJ&hl=zh-CN&oi=sra">Wendong Xu</a><sup>2</sup>,</span>
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?user=iblw0zoAAAAJ&hl=en">Hui Shen</a><sup>2,9</sup>,</span>
+              <br>
+              <span class="author-block">
+                <a href="https://ai.smbu.edu.cn/info/1251/1391.htm">Chengming Li</a><sup>1†</sup>,</span>
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?hl=zh-CN&user=f1hBi5wAAAAJ">Lingpeng Kong</a><sup>2</sup>,</span>
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?user=PM_uMYIAAAAJ&hl=en">Ngai Wong</a><sup>2</sup>,</span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup>Shenzhen MSU-BIT University,</span>
+              <span class="author-block"><sup>2</sup>The University of Hong Kong,</span>
+              <span class="author-block"><sup>3</sup>City University of Hong Kong,</span>
+              <br>
+              <span class="author-block"><sup>4</sup>Institute of Automation, Chinese Academy of Sciences,</span>
+              <span class="author-block"><sup>5</sup>Shenzhen Institute of Advanced Technology, Chinese Academy of Sciences,</span>
+              <br>
+              <span class="author-block"><sup>6</sup>Beijing Normal University,</span>
+              <span class="author-block"><sup>7</sup>The University of California, Los Angeles,</span>
+              <span class="author-block"><sup>8</sup>The Ohio State University,</span>
+              <span class="author-block"><sup>9</sup>University of Michigan</span>
+            </div>
+
+            <div class="is-size-6 publication-authors">
+              <span class="author-block">* These authors contributed equally.</span>
+              <br>
+              <span class="author-block">† Corresponding authors.</span>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <span class="link-block" style="margin-right: 12px;">
+                  <a href="./" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv</span>
+                  </a>
+                </span>
+
+                <span class="link-block" style="margin-right: 12px;">
+                  <a href="./"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+                <!-- Dataset Link. -->
+                <span class="link-block" style="margin-right: 12px;">
+                  <a href="./"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span>🤗 Dataset</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="./" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon has-text-white">
+                      <i class="fa-brands fa-x-twitter"></i>
+                    </span>
+                    <span>Twitter</span>
+                  </a>
+                </span>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero teaser">
+    <div class="container">
+      <div class="is-max-desktop has-text-centered">
+        <img src="./static/images/main-pic.png" alt="Illustrative overview." style="max-width: 80%; height: auto;"/>
+  
+        <p>
+
+          An illustrative overview of LongEmotion dataset: Emotion Classification, Emotion Detection, Emotion QA, Emotion Conversation, Emotion Summary, and Emotion Expression. 
+        </p>
+ 
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container" style="margin-bottom: 2vh;">
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <!-- <h2 class="title is-3">🔔News</h2> -->
+
+          <h2 class="title is-3">Introduction</h2>
+          <div class="content has-text-justified">
+            <p>
+              We present <b>LongEmotion</b>, a benchmark specifically designed for long-context EI tasks. It covers a diverse set of tasks, including Emotion Classification, Emotion Detection, Emotion QA, 
+              Emotion Conversation, Emotion Summary, and Emotion Expression. On average, the input length for these tasks reaches <b>8,777</b> tokens, with long-form generation required for Emotion Expression.
+               To enhance performance under realistic constraints, we incorporate Retrieval-Augmented Generation (<b>RAG</b>) and Collaborative Emotional Modeling (<b>CoEM</b>), and compare them with standard 
+               prompt-based methods.Experimental results show that both <b>RAG</b> and <b>CoEM</b> consistently enhance EI-related performance across most long-context tasks, advancing LLMs toward more practical 
+               and real-world EI applications.
+            </p>
+          </div>
+        </div>
+      </div>
+  </div>
+  </section>
+
+  <!-- DATASET SECTION -->
+  <section class="hero is-light is-small">
+    <div class="hero-body has-text-centered">
+      <h1 class="title is-1 mmmu">
+        <img src="static/images/LongEmotion_Logo.svg" style="width:1.5em;vertical-align: bottom" alt="Logo"/>
+        <span class="mmmu">LongEmotion Dataset</span>
+      </h1>
+    </div>  
+  </section>
+  <section class="section">
+    <div class="container">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Distribution of LongEmotion dataset</h2>
+          <div class="content has-text-justified">
+                <div class="content has-text-centered">
+                <img src="static/images/distribution_pack.svg" alt="Distribution of LongEmotion dataset." class="center" style="width: 120%; height: auto; ">
+                </div>
+                <p> 
+                  <b>Left</b>: Token distributions across tasks. For Emotion Expression, the sequence length refers to the average length of
+                  model-generated outputs, whereas for the other tasks, it corresponds to the average length of input contexts.<br>
+                  <b>Right</b>: Distribution of sample counts across the six tasks, illustrating the overall composition of the dataset.
+                </p>
+          </div>
+        </div>
+      </div>
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Statistical overview of LongEmotion dataset</h2>
+          <div class="content has-text-justified">
+                <div class="content has-text-centered">
+                <img src="static/images/statistical-overview.png" alt="Statistical overview of LongEmotion dataset." class="center" style="width: 120%; height: auto; ">
+                </div>
+                <p> 
+                  A statistical overview of the LongEmotion dataset. ID represents the abbreviations of each task. Among them, EC, ED,
+                  QA, MC, and ES are long text input tasks, where Avg len refers to the average context length of the entries. EE is a long text
+                  generation task, with Avg len indicating models' average generation length. LLM as Judge indicates scoring performed by GPT-4o.<br><br>
+                  <b>Emotion Classification</b>:
+                  This task requires the model to identify the emotional category of a target entity within long-context texts that contain lengthy spans of context-independent noise.<br>
+                  <b>Emotion Detection</b>:
+                  The model is given N+1 emotional segments. Among them, N segments express the same emotion, while one segment expresses a unique emotion. The model is required to identify the single distinctive emotional segment.<br>
+                  <b>Emotion QA</b>:
+                  In this task, the model is required to answer questions grounded in long-context psychological literature.
+                  Model performance is evaluated using the F1 score between its responses and the ground truth answers.<br>
+                  <b>Emotion Conversation</b>:
+                  The model is required to act as a psychological counselor and provide empathetic and contextually appropriate emotional support to the patient. <br>
+                  <b>Emotion Summary</b>:
+                  In this task, the model is required to summarize the following aspects from long-context psychological pathology reports: (i) causes, (ii) symptoms, (iii) treatment process, (iv) illness characteristics, and (v) treatment effects.<br>
+                  <b>Emotion Expression</b>:
+                  In this task, the model is situated within a specific emotional context and prompted to produce a longform emotional self-narrative. 
+                </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COLLABORATIVE EMOTIONAL MODELING SECTION -->
+  <section class="hero is-light is-small">
+    <div class="hero-body has-text-centered">
+      <h1 class="title is-1 mmmu">
+        <img src="static/images/LongEmotion_Logo.svg" style="width:1.5em;vertical-align: bottom" alt="Logo"/>
+        <span class="mmmu">Collaborative Emotional Modeling</span>
+      </h1>
+    </div>  
+  </section>
+  <section class="section">
+    <div class="container">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">The pipeline of Collaborative Emotional Modeling (CoEM)</h2>
+
+          <div class="content has-text-justified">
+            <p>
+              To address EI tasks involving long contexts, we propose a hybrid retrieval-generation architecture that combines Retrieval-Augmented
+              Generation (RAG) with modular multi-agent collaboration.
+            </p>                
+            <div class="content has-text-centered">
+                <img src="static/images/pipeline.png" alt="The pipeline of Collaborative Emotional Modeling (CoEM)." class="center" style="width: 120%; height: auto; ">
+                </div>
+                <p> 
+                  <b>Chunking</b>: The input context is segmented into semantically coherent or token-length-constrained chunks. This enables efficient retrieval and minimizes irrelevant content during similarity estimation.<br>
+                  <b>Initial Ranking</b>: A retrieval agent, implemented as
+                  CoEM-Rank, evaluates the relevance of each chunk to the
+                  query using dense semantic similarity. Top-ranked chunks
+                  are passed forward for enhancement.<br>
+                  <b>Multi-Agent Enrichment</b>: A reasoning agent called
+                  CoEM-Sage, functioning as a knowledge assistant, enriches
+                  the selected chunks by incorporating external knowledge or
+                  latent emotional signals. These signals, derived from psychological theories or curated priors, enhance emotional reasoning without introducing task-specific leakage.<br>
+                  <b>Re-Ranking</b>: The enriched chunks are then re-evaluated
+                  by CoEM-Rank for both semantic relevance and emotional
+                  alignment. This ensures that the final input is both factually
+                  grounded and affectively coherent.<br>
+                  <b>Emotional Ensemble Generation</b>: The selected and enriched content, along with the prompt, is fed into a generation model denoted as CoEM-Core. This model (e.g., a longcontext LLM or an instruction-tuned model) produces the
+                  final task-specific output, whether it be classification, summarization, or dialogue generation.
+                </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- RESULTS SECTION -->
+  <section class="hero is-light is-small">
+    <div class="hero-body has-text-centered">
+      <h1 class="title is-1 mmmu">
+        <img src="static/images/LongEmotion_Logo.svg" style="width:1.5em;vertical-align: bottom" alt="Logo"/>
+        <span class="mmmu">Experiment Results</span>
+      </h1>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+
+      <div class="columns is-centered m-6">
+        <div class="column is-full has-text-centered content">
+          <h2 class="title is-3" id="leaderboard">Data</h2>
+          <div class="content has-text-justified">
+            <p>You can directly download our data from <a href="./">Huggingface
+              datasets</a>. For guidance on how to access and utilize the data, please consult our instructions on <a
+              href="./">Github</a>.</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-------------------------------------------------------------------- LEADERBOARD SECTION -------------------------------------------------------------------->
+      <div class="columns is-centered m-6">
+        <div class="column is-full has-text-centered content">
+          <h2 class="title is-3" id="leaderboard">Experiment Results</h2>
+          <div class="content has-text-justified">
+            <p>
+              We evaluate various models including both closed- and open-source models in Base, RAG, CoEM settings. 
+              In the Emotion Classification, Emotion Detection, Emotion QA, and Emotion Expression tasks, we employ GPT-4o as the CoEM-Sage, while Deepeek-V3 is used for the Emotion Conversation-4 and Emotion Summary tasks in the same role. 
+              For tasks employing automatic evaluation, we adopt GPT-4o as the evaluator.
+              The results are shown in the following table.
+            </p>
+            <p>
+              Experiment result across different prompting settings (Base, RAG, CoEM). 
+              EC represents Emotion Classification, 
+              ED represents Emotion Detection, 
+              QA represents Emotion QA, 
+              MC-4 represents the fourth stage of Emotion Conversation, 
+              ES represents Emotion Summary, and 
+              EE represents Emotion Expression.
+            </p>
+          </div>
+          <div class="experiment-table-container">
+            <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+              <thead>
+                <tr>
+                  <th>Method</th>
+                  <th>Model</th>
+                  <th>EC</th>
+                  <th>ED</th>
+                  <th>QA</th>
+                  <th>MC-4</th>
+                  <th>ES</th>
+                  <th>EE</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td rowspan="5">Base</td>
+                  <td style="font-weight: bold !important; color: #2c3e50 !important; text-align: left !important; background: none !important; padding-left: 12px !important;">GPT-4o-mini</td>
+                  <td>28.50</td>
+                  <td>16.42</td>
+                  <td>48.61</td>
+                  <td>3.75</td>
+                  <td>4.14</td>
+                  <td>86.77</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: bold !important; color: #2c3e50 !important; text-align: left !important; background: none !important; padding-left: 12px !important;">GPT-4o</td>
+                  <td>51.17</td>
+                  <td>19.12</td>
+                  <td>50.12</td>
+                  <td>3.77</td>
+                  <td>4.19</td>
+                  <td>81.03</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: bold !important; color: #2c3e50 !important; text-align: left !important; background: none !important; padding-left: 12px !important;">DeepSeek-V3</td>
+                  <td>44.00</td>
+                  <td>24.51</td>
+                  <td>45.53</td>
+                  <td>3.99</td>
+                  <td>4.28</td>
+                  <td>81.75</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: bold !important; color: #2c3e50 !important; text-align: left !important; background: none !important; padding-left: 12px !important;">Qwen3-8B</td>
+                  <td>38.50</td>
+                  <td>18.14</td>
+                  <td>44.75</td>
+                  <td>3.97</td>
+                  <td>4.21</td>
+                  <td>73.40</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: bold !important; color: #2c3e50 !important; text-align: left !important; background: none !important; padding-left: 12px !important;">Llama3.1-8B-Instruct</td>
+                  <td>26.17</td>
+                  <td>9.80</td>
+                  <td>45.74</td>
+                  <td>4.00</td>
+                  <td>3.98</td>
+                  <td>75.61</td>
+                </tr>
+                <tr>
+                  <td rowspan="5">RAG</td>
+                  <td style="font-weight: bold !important; color: #2c3e50 !important; text-align: left !important; background: none !important; padding-left: 12px !important;">GPT-4o-mini</td>
+                  <td>38.33</td>
+                  <td>21.57</td>
+                  <td>50.72</td>
+                  <td>3.78</td>
+                  <td>4.19</td>
+                  <td>80.41</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: bold !important; color: #2c3e50 !important; text-align: left !important; background: none !important; padding-left: 12px !important;">GPT-4o</td>
+                  <td>54.67</td>
+                  <td>22.55</td>
+                  <td>51.81</td>
+                  <td>3.80</td>
+                  <td>4.13</td>
+                  <td>79.49</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: bold !important; color: #2c3e50 !important; text-align: left !important; background: none !important; padding-left: 12px !important;">DeepSeek-V3</td>
+                  <td>52.17</td>
+                  <td>23.53</td>
+                  <td>50.44</td>
+                  <td>4.34</td>
+                  <td>4.28</td>
+                  <td>81.83</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: bold !important; color: #2c3e50 !important; text-align: left !important; background: none !important; padding-left: 12px !important;">Qwen3-8B</td>
+                  <td>39.67</td>
+                  <td>19.12</td>
+                  <td>44.34</td>
+                  <td>4.14</td>
+                  <td>4.20</td>
+                  <td>73.28</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: bold !important; color: #2c3e50 !important; text-align: left !important; background: none !important; padding-left: 12px !important;">Llama3.1-8B-Instruct</td>
+                  <td>28.00</td>
+                  <td>11.27</td>
+                  <td>47.04</td>
+                  <td>3.94</td>
+                  <td>3.71</td>
+                  <td>75.16</td>
+                </tr>
+                <tr>
+                  <td rowspan="5">CoEM</td>
+                  <td style="font-weight: bold !important; color: #2c3e50 !important; text-align: left !important; background: none !important; padding-left: 12px !important;">GPT-4o-mini</td>
+                  <td>48.00</td>
+                  <td>20.59</td>
+                  <td>47.51</td>
+                  <td>3.77</td>
+                  <td>3.91</td>
+                  <td>80.38</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: bold !important; color: #2c3e50 !important; text-align: left !important; background: none !important; padding-left: 12px !important;">GPT-4o</td>
+                  <td>52.83</td>
+                  <td>25.00</td>
+                  <td>47.24</td>
+                  <td>3.81</td>
+                  <td>4.02</td>
+                  <td>80.41</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: bold !important; color: #2c3e50 !important; text-align: left !important; background: none !important; padding-left: 12px !important;">DeepSeek-V3</td>
+                  <td>54.33</td>
+                  <td>23.04</td>
+                  <td>46.52</td>
+                  <td>4.34</td>
+                  <td>4.12</td>
+                  <td>82.83</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: bold !important; color: #2c3e50 !important; text-align: left !important; background: none !important; padding-left: 12px !important;">Qwen3-8B</td>
+                  <td>52.83</td>
+                  <td>18.14</td>
+                  <td>46.31</td>
+                  <td>4.14</td>
+                  <td>4.09</td>
+                  <td>73.59</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: bold !important; color: #2c3e50 !important; text-align: left !important; background: none !important; padding-left: 12px !important;">Llama3.1-8B-Instruct</td>
+                  <td>38.17</td>
+                  <td>11.27</td>
+                  <td>44.79</td>
+                  <td>4.00</td>
+                  <td>3.60</td>
+                  <td>75.71</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    
+      
+
+    </section>
+      
+
+
+
+    <!-------------------------------------------------------------------- Comprehensive Prompt Collections -------------------------------------------------------------------->
+    <section class="hero is-light is-small">
+      <div class="hero-body has-text-centered">
+        <h1 class="title is-1 mmmu">
+          <img src="static/images/LongEmotion_Logo.svg" style="width:1.5em;vertical-align: bottom" alt="Logo"/>
+          <span class="mmmu">Comprehensive Prompt Collections</span>
+        </h1>
+      </div>
+    </section>
+    <div class="container">
+    <div class="columns is-centered m-6">
+      <div class="column is-full has-text-centered content">
+        <div class="content has-text-justified">
+          <p>
+            This section presents the complete set of prompts used throughout the framework, encompassing Evaluation, Multi-agent Enrichment, and Emotional Ensemble Generation stages across all tasks. 
+            For tasks adopting automatic evaluation as the metric, we utilize GPT-4o as the evaluation model. 
+            During the Multi-Agent Enrichment stage, task-specific prompts are designed to guide agent collaboration and reasoning. 
+            Finally, in the Emotional Ensemble Generation stage, we employ carefully constructed prompts to support emotional diversity and coherence in response generation.
+          </p>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="columns is-centered m-6">
+      <div class="column is-full has-text-centered content">
+        <h2 class="title is-3" id="examples">Evaluation Prompt Examples</h2>
+        <div class="carousel results-carousel">
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/evaluation_prompts/conv_eval_1.png" alt="grade-lv" width="60%"/>
+              <p class="mt-3 has-text-grey">Evaluation prompt for the first stage of Emotion Conversation</p>
+            </div>
+          </div>
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/evaluation_prompts/conv_eval_2.png" alt="grade-lv" width="60%"/>
+              <p class="mt-3 has-text-grey">Evaluation prompt for the second stage of Emotion Conversation</p>
+            </div>
+          </div>
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/evaluation_prompts/conv_eval_3.png" alt="grade-lv" width="60%"/>
+              <p class="mt-3 has-text-grey">Evaluation prompt for the third stage of Emotion Conversation</p>
+            </div>
+          </div>
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/evaluation_prompts/conv_eval_4.png" alt="grade-lv" width="60%"/>
+              <p class="mt-3 has-text-grey">Evaluation prompt for the fourth stage of Emotion Conversation</p>
+            </div>
+          </div>
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/evaluation_prompts/summary_eval.png" alt="grade-lv" width="60%"/>
+              <p class="mt-3 has-text-grey">Evaluation prompt for Emotion Summary</p>
+            </div>
+          </div>
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/evaluation_prompts/expression_eval.png" alt="grade-lv" width="60%"/>
+              <p class="mt-3 has-text-grey">Evaluation prompt for Emotion Expression</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+          
+  <!-------------------------------------------------------------------- Correct Example -------------------------------------------------------------------->
+    <div class="columns is-centered m-6">
+      <div class="column is-full has-text-centered content">
+        <h2 class="title is-3">Multi-Agent Enrichment Prompt Examples</h2>
+        <div id="results-carousel" class="carousel results-carousel">
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/enrichment_prompts/Emo_class_aug.png" alt="grade-lv" width="60%"/>
+              <p class="mt-3 has-text-grey">Multi-agent enrichment prompt for Emotion Classification</p>
+            </div>
+          </div>
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/enrichment_prompts/Emo_detect_aug.png" alt="grade-lv" width="60%"/>
+              <p class="mt-3 has-text-grey">Multi-agent enrichment prompt for Emotion Detection</p>
+            </div>
+          </div>
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/enrichment_prompts/conv_aug.png" alt="grade-lv" width="60%"/>
+              <p class="mt-3 has-text-grey">Multi-agent enrichment prompt for Emotion Conversation</p>
+            </div>
+          </div>
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/enrichment_prompts/qa_aug.png" alt="grade-lv" width="60%"/>
+              <p class="mt-3 has-text-grey">Multi-agent enrichment prompt for Emotion QA</p>
+            </div>
+          </div>
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/enrichment_prompts/summary_aug.png" alt="grade-lv" width="60%"/>
+              <p class="mt-3 has-text-grey">Multi-agent enrichment prompt for Emotion Summary</p>
+            </div>
+          </div>
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/enrichment_prompts/expression_aug.png" alt="grade-lv" width="60%"/>
+              <p class="mt-3 has-text-grey">Multi-agent enrichment prompt for Emotion Expression</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="columns is-centered m-6">
+      <div class="column is-full has-text-centered content">
+        <h2 class="title is-3">Emotional Ensemble Generation Prompt Examples</h2>
+        <div id="results-carousel" class="carousel results-carousel">
+        <div class="box m-5">
+          <div class="content has-text-centered">
+            <img src="static/images/generation_prompts/Emo_class_gen.png" alt="grade-lv" width="60%"/>
+            <p class="mt-3 has-text-grey">Emotional ensemble generation prompt for Emotion Classification</p>
+          </div>
+        </div>
+        <div class="box m-5">
+          <div class="content has-text-centered">
+            <img src="static/images/generation_prompts/Emo_detect_gen.png" alt="grade-lv" width="60%"/>
+            <p class="mt-3 has-text-grey">Emotional ensemble generation prompt for Emotion Detection</p>
+          </div>
+        </div>
+        <div class="box m-5">
+          <div class="content has-text-centered">
+            <img src="static/images/generation_prompts/conv_gen.png" alt="grade-lv" width="60%"/>
+            <p class="mt-3 has-text-grey">Emotional ensemble generation prompt for Emotion Conversation</p>
+          </div>
+        </div>
+        <div class="box m-5">
+          <div class="content has-text-centered">
+            <img src="static/images/generation_prompts/qa_gen.png" alt="grade-lv" width="60%"/>
+            <p class="mt-3 has-text-grey">Emotional ensemble generation prompt for Emotion QA</p>
+          </div>
+        </div>
+        <div class="box m-5">
+          <div class="content has-text-centered">
+            <img src="static/images/generation_prompts/summary_gen.png" alt="grade-lv" width="60%"/>
+            <p class="mt-3 has-text-grey">Emotional ensemble generation prompt for Emotion Summary</p>
+          </div>
+        </div>
+        <div class="box m-5">
+          <div class="content has-text-centered">
+            <img src="static/images/generation_prompts/expression_gen.png" alt="grade-lv" width="60%"/>
+            <p class="mt-3 has-text-grey">Emotional ensemble generation prompt for Emotion Expression</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>@misc{shen2025phyxdoesmodelwits,
+        title={PhyX: Does Your Model Have the "Wits" for Physical Reasoning?}, 
+        author={Hui Shen and Taiqiang Wu and Qi Han and Yunta Hsieh and Jizhou Wang and Yuyue Zhang and Yuxin Cheng and Zijian Hao and Yuansheng Ni and Xin Wang and Zhongwei Wan and Kai Zhang and Wendong Xu and Jing Xiong and Ping Luo and Wenhu Chen and Chaofan Tao and Zhuoqing Mao and Ngai Wong},
+        year={2025},
+        eprint={2505.15929},
+        archivePrefix={arXiv},
+        primaryClass={cs.AI},
+        url={https://arxiv.org/abs/2505.15929}, 
+  }</code>
+  </pre>
+    </div>
+  </section> -->
+
+  <!-- <section class="section" id="Contact">
+    <div class="container is-max-desktop content">
+      <h2 class="title">Contact Us</h2>
+      <p>If you have any inquiries about ChartMimic, feel free to reach out to us at chartmimic@gmail.com, {scf22, yangc21}@mails.tsinghua.edu.cn or raise an
+        issue on Github.</p>
+    </div>
+  </section> -->
+
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="content is-small">
+          This website templated is adapted from <a href="https://github.com/nerfies/nerfies.github.io">nerfies</a> and
+          <a href="https://mmmu-benchmark.github.io/">MMMU</a>.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>
