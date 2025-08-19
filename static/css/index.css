@@ -548,3 +548,102 @@ td:hover {
     font-size: 1em !important;
   }
 }
+
+/* Leaderboard visual refresh */
+#leaderboard-table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(40, 39, 39, 0.08);
+  font-size: 0.95rem;
+}
+
+#leaderboard-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: #4b6177 !important;
+  color: #ffffff !important;
+  padding: 12px !important;
+  text-align: center !important;
+  border-bottom: 2px solid #34495e !important;
+}
+
+#leaderboard-table th,
+#leaderboard-table td {
+  border: 1px solid #e6e6e6;
+  padding: 10px 12px;
+}
+
+#leaderboard-table tbody tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+#leaderboard-table tbody tr:hover {
+  background-color: #e8f4f8;
+  transition: background-color 0.2s ease;
+}
+
+/* Column alignments */
+#leaderboard-table th:first-child,
+#leaderboard-table td:first-child {
+  text-align: center !important;
+  width: 80px;
+}
+
+#leaderboard-table th:nth-child(2),
+#leaderboard-table td:nth-child(2) {
+  text-align: left !important;
+  font-weight: 600;
+}
+
+#leaderboard-table th:nth-child(3),
+#leaderboard-table td:nth-child(3) {
+  text-align: left !important;
+}
+
+/* Numeric columns (EC ~ Overall Score) */
+#leaderboard-table th:nth-child(n+4):nth-child(-n+10),
+#leaderboard-table td:nth-child(n+4):nth-child(-n+10) {
+  text-align: center !important;
+}
+
+/* Emphasize Overall Score */
+#leaderboard-table td:nth-child(10) {
+  font-weight: 700;
+  color: #3273dc;
+  background-color: #f0f8ff;
+}
+
+/* Top-3 rank badges */
+#leaderboard-table tbody tr:nth-child(1) td:first-child .tag {
+  background: linear-gradient(135deg, #f7d14a, #f0b90b) !important;
+  color: #111 !important;
+}
+#leaderboard-table tbody tr:nth-child(2) td:first-child .tag {
+  background: linear-gradient(135deg, #dce1e6, #bfc7cf) !important;
+  color: #111 !important;
+}
+#leaderboard-table tbody tr:nth-child(3) td:first-child .tag {
+  background: linear-gradient(135deg, #f0c8a0, #d49a6a) !important;
+  color: #111 !important;
+}
+
+/* Action buttons spacing */
+#leaderboard-table td:last-child .button {
+  margin: 0 3px;
+}
+
+@media screen and (max-width: 768px) {
+  #leaderboard-table {
+    font-size: 0.9rem;
+  }
+  #leaderboard-table th,
+  #leaderboard-table td {
+    padding: 8px 10px;
+    min-width: 80px;
+  }
+}

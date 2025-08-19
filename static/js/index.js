@@ -1,4 +1,4 @@
-$(document).ready(function() {
+document.addEventListener('DOMContentLoaded', function() {
   const options = {
     slidesToScroll: 1,
     slidesToShow: 1,
@@ -6,19 +6,23 @@ $(document).ready(function() {
     infinite: true,
     autoplay: false,
     autoplaySpeed: 3000,
-  }
-  // Initialize all div with carousel class
-  const carousels = bulmaCarousel.attach('.carousel', options);
-
-})
+  };
+  bulmaCarousel.attach('.carousel', options);
+});
 
 document.addEventListener('DOMContentLoaded', function() {
-  loadTableData();
-  setupEventListeners();
-  window.addEventListener('resize', adjustNameColumnWidth);
+  const mmmuTable = document.getElementById('mmmu-table');
+  if (mmmuTable) {
+    loadTableData();
+    setupEventListeners();
+    window.addEventListener('resize', adjustNameColumnWidth);
+  }
 });
 
 function loadTableData() {
+  if (!document.querySelector('#mmmu-table')) {
+    return;
+  }
   console.log('Starting to load table data...');
   fetch('./leaderboard_data.json')
     .then(response => {
@@ -78,28 +82,43 @@ function loadTableData() {
     })
     .catch(error => {
       console.error('Error loading table data:', error);
-      document.querySelector('#mmmu-table tbody').innerHTML = `
-        <tr>
-            <td colspan="21"> Error loading data: ${error.message}<br> Please ensure you're accessing this page through a web server (http://localhost:8000) and not directly from the file system. </td>
-        </tr>
-      `;
+      const tbody = document.querySelector('#mmmu-table tbody');
+      if (tbody) {
+        tbody.innerHTML = `
+          <tr>
+              <td colspan="21"> Error loading data: ${error.message}<br> Please ensure you're accessing this page through a web server (http://localhost:8000) and not directly from the file system. </td>
+          </tr>
+        `;
+      }
     });
 }
 
 function setupEventListeners() {
-  document.querySelector('.reset-cell').addEventListener('click', function() {
-    resetTable();
-  });
+  const resetBtn = document.querySelector('.reset-cell');
+  if (resetBtn) {
+    resetBtn.addEventListener('click', function() {
+      resetTable();
+    });
+  }
 
-  document.querySelector('.pro-details-cell').addEventListener('click', function() {
-    toggleDetails('pro');
-  });
-  document.querySelector('.val-details-cell').addEventListener('click', function() {
-    toggleDetails('val');
-  });
-  document.querySelector('.test-details-cell').addEventListener('click', function() {
-    toggleDetails('test');
-  });
+  const proBtn = document.querySelector('.pro-details-cell');
+  if (proBtn) {
+    proBtn.addEventListener('click', function() {
+      toggleDetails('pro');
+    });
+  }
+  const valBtn = document.querySelector('.val-details-cell');
+  if (valBtn) {
+    valBtn.addEventListener('click', function() {
+      toggleDetails('val');
+    });
+  }
+  const testBtn = document.querySelector('.test-details-cell');
+  if (testBtn) {
+    testBtn.addEventListener('click', function() {
+      toggleDetails('test');
+    });
+  }
 
   var headers = document.querySelectorAll('#mmmu-table thead tr:last-child th.sortable');
   headers.forEach(function(header) {
@@ -117,11 +136,15 @@ function toggleDetails(section) {
     var headerCell = document.querySelector('.' + sec + '-details-cell');
     if (sec === section) {
       detailCells.forEach(cell => cell.classList.toggle('hidden'));
-      headerCell.setAttribute('colspan', headerCell.getAttribute('colspan') === '1' ? (sec === 'test' ? '7' : '3') : '1');
+      if (headerCell) {
+        headerCell.setAttribute('colspan', headerCell.getAttribute('colspan') === '1' ? (sec === 'test' ? '7' : '3') : '1');
+      }
     } else {
       detailCells.forEach(cell => cell.classList.add('hidden'));
       overallCells.forEach(cell => cell.classList.remove('hidden'));
-      headerCell.setAttribute('colspan', '1');
+      if (headerCell) {
+        headerCell.setAttribute('colspan', '1');
+      }
     }
   });
 
@@ -137,12 +160,17 @@ function resetTable() {
     cell.classList.remove('hidden');
   });
 
-  document.querySelector('.pro-details-cell').setAttribute('colspan', '1');
-  document.querySelector('.val-details-cell').setAttribute('colspan', '1');
-  document.querySelector('.test-details-cell').setAttribute('colspan', '1');
+  const proHeader = document.querySelector('.pro-details-cell');
+  if (proHeader) proHeader.setAttribute('colspan', '1');
+  const valHeader = document.querySelector('.val-details-cell');
+  if (valHeader) valHeader.setAttribute('colspan', '1');
+  const testHeader = document.querySelector('.test-details-cell');
+  if (testHeader) testHeader.setAttribute('colspan', '1');
 
   var valOverallHeader = document.querySelector('#mmmu-table thead tr:last-child th.val-overall');
-  sortTable(valOverallHeader, true);
+  if (valOverallHeader) {
+    sortTable(valOverallHeader, true);
+  }
 
   setTimeout(adjustNameColumnWidth, 0);
 }
@@ -206,7 +234,9 @@ function getCellValue(row, index) {
 
 function initializeSorting() {
   var valOverallHeader = document.querySelector('#mmmu-table thead tr:last-child th.val-overall');
-  sortTable(valOverallHeader, true);
+  if (valOverallHeader) {
+    sortTable(valOverallHeader, true);
+  }
 }
 
 function adjustNameColumnWidth() {
@@ -275,6 +305,9 @@ function applyStyle(value, rank) {
     }
 
 document.addEventListener('DOMContentLoaded', function() {
+    if (!document.getElementById('chart_Diagrams')) {
+      return;
+    }
     // Data for the "Diagrams" chart
     const data_Diagrams = {
         labels: ['Adept Fuyu-8B', 'Qwen-VL-7B-Chat', 'InstructBLIP-T5-XXL', 'LLaVA-1.5-13B', 'BLIP-2 FLAN-T5-XXL', 'Yi-VL-34B', 'LLaVA-1.6-34B', 'InternVL-Chat-V1.2', 'VILA1.5', 'GPT-4V'],

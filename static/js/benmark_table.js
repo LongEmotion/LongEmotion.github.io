@@ -102,11 +102,21 @@ var barColorFn = function (value, formatterParams) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+    const needsBenchmark = document.getElementById('benchmark-table') || document.getElementById('eurus-code-table');
+    if (!needsBenchmark) {
+        return;
+    }
+    const safeJson = (resp) => {
+        if (!resp.ok) {
+            throw new Error(`HTTP ${resp.status} ${resp.statusText}`);
+        }
+        return resp.json();
+    };
     Promise.all([
-        fetch('static/data/benchmark.json').then(response => response.json()),
-        fetch('static/data/feedback_comparison.json').then(response => response.json()),
-        fetch('static/data/eurus_code_sr_vs_k_series.json').then(response => response.json()),
-        fetch('static/data/eurus_math_sr_vs_k_series.json').then(response => response.json())
+        fetch('static/data/benchmark.json').then(safeJson),
+        fetch('static/data/feedback_comparison.json').then(safeJson),
+        fetch('static/data/eurus_code_sr_vs_k_series.json').then(safeJson),
+        fetch('static/data/eurus_math_sr_vs_k_series.json').then(safeJson)
     ])
         .then(([
             benchmark_tabledata,
@@ -119,6 +129,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 row.line = [row['1'], row['2'], row['3'], row['4'], row['5']]
             })
 
+            if (document.getElementById('benchmark-table')) {
             var table = new Tabulator("#benchmark-table", {
                 data: benchmark_tabledata,
                 layout: "fitColumns",
@@ -156,8 +167,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     { column: "Overall", dir: "desc" },
                 ],
             });
+            }
 
 
+            if (document.getElementById('eurus-code-table')) {
             var eurus_code_table = new Tabulator("#eurus-code-table", {
                 data: eurus_code_sr_vs_k_series,
                 layout: "fitColumns",
@@ -195,6 +208,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     { column: "Overall", dir: "desc" },
                 ],
             });
+            }
 
             // 2. Benchmark Feedback Efficancy Table
             benchmark_feedback_efficancy_tabledata.forEach(row => {
@@ -202,6 +216,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 row.size = row.feedback_provider_info.size;
                 row.type = row.feedback_provider_info.type;
             })
+        })
+        .catch(err => {
+            console.error('Failed to load benchmark data:', err);
         });
 
 })
