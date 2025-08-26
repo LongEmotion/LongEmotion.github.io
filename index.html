@@ -541,13 +541,97 @@
           </div>
         </div>
       </div>
-    
+      <div class="container">
+        <div class="columns is-centered m-6">
+          <div class="column is-full has-text-centered content" id="leaderboard-section">
+            <h2 class="title is-3">Real-time Leaderboard</h2>
+            <div class="content has-text-justified">
+              <p>
+                Below is the real-time leaderboard based on submitted results. The leaderboard is sorted by overall score, which is calculated as the average of scores from six tasks.
+                All the results we present here are based on the Base Setting. The leaderboard is constantly updating as we are welcoming new submissions!
+              </p>
+              <div class="notification is-info is-light">
+                <strong>Overall Score Calculation Rules:</strong>
+                <ul>
+                  <li><strong>EC (Emotion Classification):</strong> 15% weight</li>
+                  <li><strong>ED (Emotion Detection):</strong> 15% weight</li>
+                  <li><strong>QA (Emotion QA):</strong> 20% weight</li>
+                  <li><strong>MC-4 (Emotion Conversation):</strong> 20% weight × 20 (score conversion)</li>
+                  <li><strong>ES (Emotion Summary):</strong> 15% weight × 20 (score conversion)</li>
+                  <li><strong>EE (Emotion Expression):</strong> 15% weight</li>
+                </ul>
+                <p class="mt-2">
+                  <strong>Formula:</strong> Overall Score = (EC×0.15) + (ED×0.15) + (QA×0.20) + (MC-4×20×0.20) + (ES×20×0.15) + (EE×0.15)
+                </p>
+                <p class="mt-2">
+                  <small><em>Note: MC-4 and ES are displayed as 5-point scores but converted to 100-point scale in the calculation.</em></small>
+                </p>
+              </div>
+            </div>
+            <div class="experiment-table-container">
+              <table id="leaderboard-table" class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+                <thead></thead>
+                <tbody></tbody>
+              </table>
+            </div>
+   
+          </div>
+        </div>
+      </div>
+      <div class="columns is-centered m-6">
+        <div class="column is-full has-text-centered content">
+          <h2 class="title is-3" id="examples">Comparison of GPT series models</h2>
+          <div class="content has-text-justified">
+            <p>
+            It can be seen that GPT-5's overall capabilities surpass those of GPT-4o and GPT-4o-mini. In the tasks of Emotion Classification and Emotion Detection, we only prompt the models to output the final label. The results show that GPT-5's reasoning ability is significantly better than that of GPT-4o and GPT-4o-mini.
+            </p>
       
+              <p>
+                Note that for <strong>Emotion Classification</strong> and <strong>Emotion Detection</strong>, models are only prompted to output the final label. As a result, we do not include specific case studies for these tasks. In contrast, the remaining four tasks — <em>Emotion Expression</em>, <em>Emotion Conversation</em>, <em>Emotion Summary</em>, and <em>Emotion QA</em> — require free-form generation from the models. For these, we conducted detailed analyses and case-by-case comparisons to evaluate the models' concrete performance beyond scores in Emotion Intelligence tasks.
+              </p>
+          </div>
+          <div class="carousel results-carousel">
+            <div class="box m-5">
+              <div class="content has-text-centered">
+                <h3 class="title is-3" style="margin-top: 0; margin-bottom: 2rem;">Emotion Expression</h3>
+                <img src="static/images/case_gpt_expression.png" alt="grade-lv" width="60%"/>
+                <p class="mt-3 has-text-grey has-text-left" style="white-space: normal; max-width: 900px; margin-left: auto; margin-right: auto;">In the Emotion Expression task, GPT-4o-mini performed more like a real person, with the generated content closely resembling what an actual individual might say in a given situation. In contrast, GPT-4o's expressions were more like a rigidly told story, lacking natural fluidity. Meanwhile, GPT-5's generation was more comprehensive and balanced, providing a well-rounded and objective description of emotions across various features.</p>
+              </div>
+            </div>
+            <div class="box m-5">
+              <div class="content has-text-centered">
+                <h3 class="title is-3" style="margin-top: 0; margin-bottom: 2rem;">Emotion Conversation</h3>
+                <img src="static/images/case_gpt_conv.png" alt="grade-lv" width="60%"/>
+                <p class="mt-3 has-text-grey has-text-left" style="white-space: normal; max-width: 900px; margin-left: auto; margin-right: auto;">In the Emotion Conversation task, GPT-5 achieved higher scores based on our psychology theory-driven metrics. However, by examining the model outputs, we can see that GPT-5 merely makes better use of psychological knowledge to offer advice to the patient, rather than genuinely demonstrating empathy toward the client.</p>
+              </div>
+            </div>
+            <div class="box m-5">
+              <div class="content has-text-centered">
+                <h3 class="title is-3" style="margin-top: 0; margin-bottom: 2rem;">Emotion Summary</h3>
+                <img src="static/images/case_gpt_summary.png" alt="grade-lv" width="60%"/>
+                <p class="mt-3 has-text-grey has-text-left" style="white-space: normal; max-width: 900px; margin-left: auto; margin-right: auto;">In the Emotion Summary task, GPT-4o-mini and GPT-4o directly analyzed various features of the case, whereas GPT-5 structured its analysis based on psychological theories, resulting in a higher score.</p>
+                
+              </div>
+            </div>
+            <div class="box m-5">
+              <div class="content has-text-centered">
+                <h3 class="title is-3" style="margin-top: 0; margin-bottom: 2rem;">Emotion QA</h3>
+                <img src="static/images/case_gpt_QA.png" alt="grade-lv" width="60%"/>
+                <p class="mt-3 has-text-grey has-text-left" style="white-space: normal; max-width: 900px; margin-left: auto; margin-right: auto;">In the Emotion QA task, GPT-4o and GPT-4o-mini tend to respond more literally based on the original text. In contrast, GPT-5 modifies content according to its own understanding, which leads to a lower F1 score.</p>
+              </div>
+            </div>
+          </div>
+          <div class="content has-text-justified" style="margin-top: 4rem;">
+            <p>
+              From the tasks above, we can conclude that GPT-4o-mini behaves more like a human, with richer emotional features, but its application of psychological theory is somewhat lacking. On the other hand, GPT-5 has a better understanding of psychological theories, but the output is too rigid and mechanical, which might lead to a less accurate user experience in practice. GPT-4o strikes a more balanced approach between theoretical understanding and emotional features.</p>
+          </div>
+        </div>
+      </div>
 
     </section>
   
   <!-- LEADERBOARD SECTION (dynamic from JSONL) -->
-  <section class="hero is-light is-small">
+  <!-- <section class="hero is-light is-small">
     <div class="hero-body has-text-centered">
       <h1 class="title is-1 mmmu">
         <img src="static/images/LongEmotion_Logo.svg" style="width:1.5em;vertical-align: bottom" alt="Logo"/>
@@ -593,7 +677,7 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
       
 
 
