@@ -11,19 +11,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>LongEmotion</title>
 
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-
-    gtag('js', new Date());
-
-    gtag('config', 'G-PYVRSFMDRL');
-  </script> -->
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -44,7 +31,7 @@
   <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css?v=1.6">
-  <link rel="icon" href="static/images/LongEmotion_Logo.svg">
+  <link rel="icon" href="static/images/LongEmotion_Logo.png">
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -70,17 +57,13 @@
 </head>
 
 <body>
-
-
-
-
   <section class="hero">
     <div class="hero-body">
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
             <h1 class="title is-1 publication-title is-bold">
-              <img src="static/images/LongEmotion_Logo.svg" style="width:1em;vertical-align: middle" alt="Logo"/>
+              <img src="static/images/LongEmotion_Logo.png" style="width:1em;vertical-align: middle" alt="Logo"/>
               <span class="mmmu" style="vertical-align: middle">LongEmotion</span>
             </h1>
             <h2 class="subtitle is-3 publication-subtitle">
@@ -99,18 +82,17 @@
                 <a href="https://scholar.google.com/citations?hl=zh-CN&user=jkbw8AUAAAAJ">Minghuan Tan</a><sup>5</sup>,</span>
               <span class="author-block">
                 <a href="https://www.researchgate.net/profile/Ningning-Mao">Ningning Mao</a><sup>6</sup>,</span>
+              
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?user=iblw0zoAAAAJ&hl=en">Hui Shen</a><sup>2,7</sup>,</span>
               <br>
-              <span class="author-block">
-                <a href="https://zhaochenyang20.github.io/Chayenne/">Chenyang Zhao</a><sup>7</sup>,</span>
-              <span class="author-block">
-                <a href="https://scholar.google.com/citations?hl=zh-CN&user=EVj1cNoAAAAJ">Zhongwei Wan</a><sup>8</sup>,</span>
-              <span class="author-block">
-                <a href="https://scholar.google.com/citations?hl=zh-CN&user=gjmfLroAAAAJ">Chaofan Tao</a><sup>2</sup>,</span>
               <span class="author-block">
                 <a href="https://scholar.google.com/citations?user=EaEW8QIAAAAJ&hl=zh-CN&oi=sra">Wendong Xu</a><sup>2</sup>,</span>
               <span class="author-block">
-                <a href="https://scholar.google.com/citations?user=iblw0zoAAAAJ&hl=en">Hui Shen</a><sup>2,9</sup>,</span>
-              <br>
+                <a href="https://scholar.google.com/citations?hl=zh-CN&user=gjmfLroAAAAJ">Chaofan Tao</a><sup>2</sup>,</span>
+              
+              <span class="author-block">
+                <a href="https://minyang.me/">Min Yang</a><sup>5†</sup>,</span>
               <span class="author-block">
                 <a href="https://ai.smbu.edu.cn/info/1251/1391.htm">Chengming Li</a><sup>1†</sup>,</span>
               <span class="author-block">
@@ -128,9 +110,7 @@
               <span class="author-block"><sup>5</sup>Shenzhen Institute of Advanced Technology, Chinese Academy of Sciences,</span>
               <br>
               <span class="author-block"><sup>6</sup>Beijing Normal University,</span>
-              <span class="author-block"><sup>7</sup>The University of California, Los Angeles,</span>
-              <span class="author-block"><sup>8</sup>The Ohio State University,</span>
-              <span class="author-block"><sup>9</sup>University of Michigan</span>
+              <span class="author-block"><sup>7</sup>University of Michigan, Ann Arbor</span>
             </div>
 
             <div class="is-size-6 publication-authors">
@@ -142,7 +122,7 @@
             <div class="column has-text-centered">
               <div class="publication-links">
                 <span class="link-block" style="margin-right: 12px;">
-                  <a href="https://arxiv.org/abs/2509.07403" class="external-link button is-normal is-rounded is-dark">
+                  <a href="./" class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="ai ai-arxiv"></i>
                     </span>
@@ -207,7 +187,7 @@
           <div class="content has-text-justified">
             <p>
               We present <b>LongEmotion</b>, a benchmark specifically designed for long-context EI tasks. It covers a diverse set of tasks, including Emotion Classification, Emotion Detection, Emotion QA, 
-              Emotion Conversation, Emotion Summary, and Emotion Expression. On average, the input length for these tasks reaches <b>8,777</b> tokens, with long-form generation required for Emotion Expression.
+              Emotion Conversation, Emotion Summary, and Emotion Expression. On average, the input length for these tasks reaches <b>15,341</b> tokens, with long-form generation required for Emotion Expression.
                To enhance performance under realistic constraints, we incorporate Retrieval-Augmented Generation (<b>RAG</b>) and Collaborative Emotional Modeling (<b>CoEM</b>), and compare them with standard 
                prompt-based methods.Experimental results show that both <b>RAG</b> and <b>CoEM</b> consistently enhance EI-related performance across most long-context tasks, advancing LLMs toward more practical 
                and real-world EI applications.
@@ -222,7 +202,7 @@
   <section class="hero is-light is-small">
     <div class="hero-body has-text-centered">
       <h1 class="title is-1 mmmu">
-        <img src="static/images/LongEmotion_Logo.svg" style="width:1.5em;vertical-align: bottom" alt="Logo"/>
+        <img src="static/images/LongEmotion_Logo.png" style="width:1.5em;vertical-align: bottom" alt="Logo"/>
         <span class="mmmu">LongEmotion Dataset</span>
       </h1>
     </div>  
@@ -234,7 +214,7 @@
           <h2 class="title is-3">Distribution of LongEmotion dataset</h2>
           <div class="content has-text-justified">
                 <div class="content has-text-centered">
-                <img src="static/images/distribution_pack.svg" alt="Distribution of LongEmotion dataset." class="center" style="width: 120%; height: auto; ">
+                <img src="static/images/distribution_pack.png" alt="Distribution of LongEmotion dataset." class="center" style="width: 120%; height: auto; ">
                 </div>
                 <p> 
                   <b>Left</b>: Token distributions across tasks. For Emotion Expression, the sequence length refers to the average length of
@@ -249,7 +229,7 @@
           <h2 class="title is-3">Statistical overview of LongEmotion dataset</h2>
           <div class="content has-text-justified">
                 <div class="content has-text-centered">
-                <img src="static/images/statistical-overview.png" alt="Statistical overview of LongEmotion dataset." class="center" style="width: 120%; height: auto; ">
+                <img src="static/images/token_distribution.png" alt="Statistical overview of LongEmotion dataset." class="center" style="width: 120%; height: auto; ">
                 </div>
                 <p> 
                   A statistical overview of the LongEmotion dataset. ID represents the abbreviations of each task. Among them, EC, ED,
@@ -279,7 +259,7 @@
   <section class="hero is-light is-small">
     <div class="hero-body has-text-centered">
       <h1 class="title is-1 mmmu">
-        <img src="static/images/LongEmotion_Logo.svg" style="width:1.5em;vertical-align: bottom" alt="Logo"/>
+        <img src="static/images/LongEmotion_Logo.png" style="width:1.5em;vertical-align: bottom" alt="Logo"/>
         <span class="mmmu">Collaborative Emotional Modeling</span>
       </h1>
     </div>  
@@ -326,7 +306,7 @@
   <section class="hero is-light is-small">
     <div class="hero-body has-text-centered">
       <h1 class="title is-1 mmmu">
-        <img src="static/images/LongEmotion_Logo.svg" style="width:1.5em;vertical-align: bottom" alt="Logo"/>
+        <img src="static/images/LongEmotion_Logo.png" style="width:1.5em;vertical-align: bottom" alt="Logo"/>
         <span class="mmmu">Experiment Results</span>
       </h1>
     </div>
@@ -374,8 +354,8 @@
                   <th>Method</th>
                   <th>Model</th>
                   <th>EC</th>
-                  <th>ED</th>
                   <th>QA</th>
+                  <th>ES</th>
                   <th>MC-4</th>
                   <th>ES</th>
                   <th>EE</th>
@@ -386,155 +366,155 @@
                 <tr>
                   <td rowspan="5">Base</td>
                   <td style="font-weight: bold !important; color: #2c3e50 !important; text-align: left !important; background: none !important; padding-left: 12px !important;">GPT-4o-mini</td>
-                  <td>28.50</td>
+                  <td>37.00</td>
                   <td>16.42</td>
                   <td>48.61</td>
+                  <td>4.54</td>
                   <td>3.75</td>
-                  <td>4.14</td>
                   <td>86.77</td>
-                  <td>56.90</td>
+                  <td>59.10</td>
                 </tr>
                 <tr>
                   <td style="font-weight: bold !important; color: #2c3e50 !important; text-align: left !important; background: none !important; padding-left: 12px !important;">GPT-4o</td>
-                  <td>51.17</td>
+                  <td>50.09</td>
                   <td>19.12</td>
                   <td>50.12</td>
+                  <td>4.60</td>
                   <td>3.77</td>
-                  <td>4.19</td>
                   <td>81.03</td>
-                  <td>60.37</td>
+                  <td>61.29</td>
                 </tr>
                 <tr>
                   <td style="font-weight: bold !important; color: #2c3e50 !important; text-align: left !important; background: none !important; padding-left: 12px !important;">DeepSeek-V3</td>
-                  <td>44.00</td>
+                  <td>56.50</td>
                   <td>24.51</td>
                   <td>45.53</td>
+                  <td>4.62</td>
                   <td>3.99</td>
-                  <td>4.28</td>
                   <td>81.75</td>
-                  <td>60.45</td>
+                  <td>63.42</td>
                 </tr>
                 <tr>
                   <td style="font-weight: bold !important; color: #2c3e50 !important; text-align: left !important; background: none !important; padding-left: 12px !important;">Qwen3-8B</td>
-                  <td>38.50</td>
+                  <td>48.00</td>
                   <td>18.14</td>
                   <td>44.75</td>
+                  <td>4.51</td>
                   <td>3.97</td>
-                  <td>4.21</td>
                   <td>73.40</td>
-                  <td>56.97</td>
+                  <td>58.98</td>
                 </tr>
                 <tr>
                   <td style="font-weight: bold !important; color: #2c3e50 !important; text-align: left !important; background: none !important; padding-left: 12px !important;">Llama3.1-8B-Instruct</td>
-                  <td>26.17</td>
+                  <td>39.34</td>
                   <td>9.80</td>
-                  <td>45.74</td>
+                  <td>44.56</td>
+                  <td>4.29</td>
                   <td>4.00</td>
-                  <td>3.98</td>
                   <td>75.61</td>
-                  <td>53.83</td>
+                  <td>55.85</td>
                 </tr>
                 <tr>
                   <td rowspan="5">RAG</td>
                   <td style="font-weight: bold !important; color: #2c3e50 !important; text-align: left !important; background: none !important; padding-left: 12px !important;">GPT-4o-mini</td>
-                  <td>38.33</td>
+                  <td>51.67</td>
                   <td>21.57</td>
                   <td>50.72</td>
+                  <td>4.53</td>
                   <td>3.78</td>
-                  <td>4.19</td>
                   <td>80.41</td>
-                  <td>58.88</td>
+                  <td>61.76</td>
                 </tr>
                 <tr>
                   <td style="font-weight: bold !important; color: #2c3e50 !important; text-align: left !important; background: none !important; padding-left: 12px !important;">GPT-4o</td>
-                  <td>54.67</td>
+                  <td>61.34</td>
                   <td>22.55</td>
                   <td>51.81</td>
+                  <td>4.52</td>
                   <td>3.80</td>
-                  <td>4.13</td>
                   <td>79.49</td>
-                  <td>61.46</td>
+                  <td>63.60</td>
                 </tr>
                 <tr>
                   <td style="font-weight: bold !important; color: #2c3e50 !important; text-align: left !important; background: none !important; padding-left: 12px !important;">DeepSeek-V3</td>
-                  <td>52.17</td>
+                  <td>62.59</td>
                   <td>23.53</td>
                   <td>50.44</td>
+                  <td>4.63</td>
                   <td>4.34</td>
-                  <td>4.28</td>
                   <td>81.83</td>
-                  <td>63.92</td>
+                  <td>66.30</td>
                 </tr>
                 <tr>
                   <td style="font-weight: bold !important; color: #2c3e50 !important; text-align: left !important; background: none !important; padding-left: 12px !important;">Qwen3-8B</td>
-                  <td>39.67</td>
+                  <td>41.59</td>
                   <td>19.12</td>
                   <td>44.34</td>
+                  <td>4.54</td>
                   <td>4.14</td>
-                  <td>4.20</td>
                   <td>73.28</td>
-                  <td>57.84</td>
+                  <td>58.65</td>
                 </tr>
                 <tr>
                   <td style="font-weight: bold !important; color: #2c3e50 !important; text-align: left !important; background: none !important; padding-left: 12px !important;">Llama3.1-8B-Instruct</td>
-                  <td>28.00</td>
+                  <td>44.00</td>
                   <td>11.27</td>
-                  <td>47.04</td>
+                  <td>43.21</td>
+                  <td>4.26</td>
                   <td>3.94</td>
-                  <td>3.71</td>
                   <td>75.16</td>
-                  <td>53.46</td>
+                  <td>56.27</td>
                 </tr>
                 <tr>
                   <td rowspan="5">CoEM</td>
                   <td style="font-weight: bold !important; color: #2c3e50 !important; text-align: left !important; background: none !important; padding-left: 12px !important;">GPT-4o-mini</td>
-                  <td>48.00</td>
+                  <td>59.50</td>
                   <td>20.59</td>
-                  <td>47.51</td>
+                  <td>49.12</td>
+                  <td>4.52</td>
                   <td>3.77</td>
-                  <td>3.91</td>
                   <td>80.38</td>
-                  <td>58.66</td>
+                  <td>62.57</td>
                 </tr>
                 <tr>
                   <td style="font-weight: bold !important; color: #2c3e50 !important; text-align: left !important; background: none !important; padding-left: 12px !important;">GPT-4o</td>
-                  <td>52.83</td>
+                  <td>61.42</td>
                   <td>25.00</td>
-                  <td>47.24</td>
+                  <td>51.07</td>
+                  <td>4.53</td>
                   <td>3.81</td>
-                  <td>4.02</td>
                   <td>80.41</td>
-                  <td>60.48</td>
+                  <td>64.12</td>
                 </tr>
                 <tr>
                   <td style="font-weight: bold !important; color: #2c3e50 !important; text-align: left !important; background: none !important; padding-left: 12px !important;">DeepSeek-V3</td>
-                  <td>54.33</td>
+                  <td>64.17</td>
                   <td>23.04</td>
-                  <td>46.52</td>
+                  <td>50.39</td>
+                  <td>4.65</td>
                   <td>4.34</td>
-                  <td>4.12</td>
                   <td>82.83</td>
-                  <td>63.05</td>
+                  <td>66.70</td>
                 </tr>
                 <tr>
                   <td style="font-weight: bold !important; color: #2c3e50 !important; text-align: left !important; background: none !important; padding-left: 12px !important;">Qwen3-8B</td>
-                  <td>52.83</td>
+                  <td>62.92</td>
                   <td>18.14</td>
-                  <td>46.31</td>
+                  <td>51.11</td>
+                  <td>4.55</td>
                   <td>4.14</td>
-                  <td>4.09</td>
                   <td>73.59</td>
-                  <td>59.78</td>
+                  <td>63.26</td>
                 </tr>
                 <tr>
                   <td style="font-weight: bold !important; color: #2c3e50 !important; text-align: left !important; background: none !important; padding-left: 12px !important;">Llama3.1-8B-Instruct</td>
-                  <td>38.17</td>
+                  <td>55.09</td>
                   <td>11.27</td>
                   <td>44.79</td>
+                  <td>4.17</td>
                   <td>4.00</td>
-                  <td>3.60</td>
                   <td>75.71</td>
-                  <td>54.53</td>
+                  <td>58.38</td>
                 </tr>
               </tbody>
             </table>
@@ -553,16 +533,13 @@
               <div class="notification is-info is-light">
                 <strong>Overall Score Calculation Rules:</strong>
                 <ul>
-                  <li><strong>EC (Emotion Classification):</strong> 15% weight</li>
-                  <li><strong>ED (Emotion Detection):</strong> 15% weight</li>
-                  <li><strong>QA (Emotion QA):</strong> 20% weight</li>
-                  <li><strong>MC-4 (Emotion Conversation):</strong> 20% weight × 20 (score conversion)</li>
-                  <li><strong>ES (Emotion Summary):</strong> 15% weight × 20 (score conversion)</li>
-                  <li><strong>EE (Emotion Expression):</strong> 15% weight</li>
+                  <li><strong>EC (Emotion Classification):</strong> 1/6 weight</li>
+                  <li><strong>ED (Emotion Detection):</strong> 1/6 weight</li>
+                  <li><strong>QA (Emotion QA):</strong> 1/6 weight</li>
+                  <li><strong>MC-4 (Emotion Conversation):</strong> 1/6 weight × 20 (score conversion)</li>
+                  <li><strong>ES (Emotion Summary):</strong> 1/6 weight × 20 (score conversion)</li>
+                  <li><strong>EE (Emotion Expression):</strong> 1/6 weight</li>
                 </ul>
-                <p class="mt-2">
-                  <strong>Formula:</strong> Overall Score = (EC×0.15) + (ED×0.15) + (QA×0.20) + (MC-4×20×0.20) + (ES×20×0.15) + (EE×0.15)
-                </p>
                 <p class="mt-2">
                   <small><em>Note: MC-4 and ES are displayed as 5-point scores but converted to 100-point scale in the calculation.</em></small>
                 </p>
@@ -609,7 +586,7 @@
               <div class="content has-text-centered">
                 <h3 class="title is-3" style="margin-top: 0; margin-bottom: 2rem;">Emotion Summary</h3>
                 <img src="static/images/case_gpt_summary.png" alt="grade-lv" width="60%"/>
-                <p class="mt-3 has-text-grey has-text-left" style="white-space: normal; max-width: 900px; margin-left: auto; margin-right: auto;">In the Emotion Summary task, GPT-4o-mini and GPT-4o directly analyzed various features of the case, whereas GPT-5 structured its analysis based on psychological theories, resulting in a higher score.</p>
+                <p class="mt-3 has-text-grey has-text-left" style="white-space: normal; max-width: 900px; margin-left: auto; margin-right: auto;">In the Emotion Summary task, both GPT-4o-mini and GPT-4o directly analyze various features of the case, while GPT-5 structures its analysis based on psychological theories. However, GPT-5 exhibits hallucinations, often adding non-existent facts. For instance, the term "slapping" is highlighted in red, but the source data never mentions such an action.</p>
                 
               </div>
             </div>
@@ -623,70 +600,18 @@
           </div>
           <div class="content has-text-justified" style="margin-top: 4rem;">
             <p>
-              From the tasks above, we can conclude that GPT-4o-mini behaves more like a human, with richer emotional features, but its application of psychological theory is somewhat lacking. On the other hand, GPT-5 has a better understanding of psychological theories, but the output is too rigid and mechanical, which might lead to a less accurate user experience in practice. GPT-4o strikes a more balanced approach between theoretical understanding and emotional features.</p>
+              From the tasks above, we can conclude that GPT-4o-mini behaves more like a human, with richer emotional features, but its application of psychological theory is somewhat lacking. On the other hand, GPT-5 has a better understanding of psychological theories, but the output is too rigid and mechanical, and may sometimes produce hallucinations, which might lead to a less accurate user experience in practice. GPT-4o strikes a more balanced approach between theoretical understanding and emotional features.</p>
           </div>
         </div>
       </div>
 
     </section>
-  
-  <!-- LEADERBOARD SECTION (dynamic from JSONL) -->
-  <!-- <section class="hero is-light is-small">
-    <div class="hero-body has-text-centered">
-      <h1 class="title is-1 mmmu">
-        <img src="static/images/LongEmotion_Logo.svg" style="width:1.5em;vertical-align: bottom" alt="Logo"/>
-        <span class="mmmu">Real-time Leaderboard</span>
-      </h1>
-    </div>
-  </section>
-  <section class="section">
-    <div class="container">
-      <div class="columns is-centered m-6">
-        <div class="column is-full has-text-centered content" id="leaderboard-section">
-          <h2 class="title is-3">LongEmotion Leaderboard</h2>
-          <div class="content has-text-justified">
-            <p>
-              Below is the real-time leaderboard based on submitted results. The leaderboard is sorted by overall score, which is calculated as the average of scores from six tasks.
-              All the results we present here are based on the Base Setting. The leaderboard is constantly updating as we are welcoming new submissions!
-            </p>
-            <div class="notification is-info is-light">
-              <strong>Overall Score Calculation Rules:</strong>
-              <ul>
-                <li><strong>EC (Emotion Classification):</strong> 15% weight</li>
-                <li><strong>ED (Emotion Detection):</strong> 15% weight</li>
-                <li><strong>QA (Emotion QA):</strong> 20% weight</li>
-                <li><strong>MC-4 (Emotion Conversation):</strong> 20% weight × 20 (score conversion)</li>
-                <li><strong>ES (Emotion Summary):</strong> 15% weight × 20 (score conversion)</li>
-                <li><strong>EE (Emotion Expression):</strong> 15% weight</li>
-              </ul>
-              <p class="mt-2">
-                <strong>Formula:</strong> Overall Score = (EC×0.15) + (ED×0.15) + (QA×0.20) + (MC-4×20×0.20) + (ES×20×0.15) + (EE×0.15)
-              </p>
-              <p class="mt-2">
-                <small><em>Note: MC-4 and ES are displayed as 5-point scores but converted to 100-point scale in the calculation.</em></small>
-              </p>
-            </div>
-          </div>
-          <div class="experiment-table-container">
-            <table id="leaderboard-table" class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
-              <thead></thead>
-              <tbody></tbody>
-            </table>
-          </div>
- 
-        </div>
-      </div>
-    </div>
-  </section> -->
-      
-
-
 
     <!-------------------------------------------------------------------- Comprehensive Prompt Collections -------------------------------------------------------------------->
     <section class="hero is-light is-small">
       <div class="hero-body has-text-centered">
         <h1 class="title is-1 mmmu">
-          <img src="static/images/LongEmotion_Logo.svg" style="width:1.5em;vertical-align: bottom" alt="Logo"/>
+          <img src="static/images/LongEmotion_Logo.png" style="width:1.5em;vertical-align: bottom" alt="Logo"/>
           <span class="mmmu">Comprehensive Prompt Collections</span>
         </h1>
       </div>
@@ -838,30 +763,6 @@
       </div>
     </div>
   </div>
-
-  <!-- <section class="section" id="BibTeX">
-    <div class="container is-max-desktop content">
-      <h2 class="title">BibTeX</h2>
-      <pre><code>@misc{shen2025phyxdoesmodelwits,
-        title={PhyX: Does Your Model Have the "Wits" for Physical Reasoning?}, 
-        author={Hui Shen and Taiqiang Wu and Qi Han and Yunta Hsieh and Jizhou Wang and Yuyue Zhang and Yuxin Cheng and Zijian Hao and Yuansheng Ni and Xin Wang and Zhongwei Wan and Kai Zhang and Wendong Xu and Jing Xiong and Ping Luo and Wenhu Chen and Chaofan Tao and Zhuoqing Mao and Ngai Wong},
-        year={2025},
-        eprint={2505.15929},
-        archivePrefix={arXiv},
-        primaryClass={cs.AI},
-        url={https://arxiv.org/abs/2505.15929}, 
-  }</code>
-  </pre>
-    </div>
-  </section> -->
-
-  <!-- <section class="section" id="Contact">
-    <div class="container is-max-desktop content">
-      <h2 class="title">Contact Us</h2>
-      <p>If you have any inquiries about ChartMimic, feel free to reach out to us at chartmimic@gmail.com, {scf22, yangc21}@mails.tsinghua.edu.cn or raise an
-        issue on Github.</p>
-    </div>
-  </section> -->
 
   <footer class="footer">
     <div class="container">

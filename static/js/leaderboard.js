@@ -98,15 +98,15 @@ function calcWeightedScore(row) {
   const MC4 = num(findValue(row, ['MC-4','MC4','MC_4','mc4','mc-4']));
   const ES = num(findValue(row, ['ES','es']));
   const EE = num(findValue(row, ['EE','ee']));
-  // weights
-  const w = { EC:0.15, ED:0.15, QA:0.20, MC4:0.20, ES:0.15, EE:0.15 };
+  // weights - all tasks have equal weight of 1/6
+  const w = 1 / 6;
   let score = 0;
-  if (EC != null) { score += EC * w.EC; }
-  if (ED != null) { score += ED * w.ED; }
-  if (QA != null) { score += QA * w.QA; }
-  if (MC4 != null) { score += (MC4 * 20) * w.MC4; }
-  if (ES != null) { score += (ES * 20) * w.ES; }
-  if (EE != null) { score += EE * w.EE; }
+  if (EC != null) { score += EC * w; }
+  if (ED != null) { score += ED * w; }
+  if (QA != null) { score += QA * w; }
+  if (MC4 != null) { score += MC4 * w; }
+  if (ES != null) { score += ES * w; }
+  if (EE != null) { score += EE * w; }
   return score;
 }
 
@@ -148,10 +148,7 @@ async function renderLeaderboard() {
       },
       'ES': (r) => toNumberOrDash(findValue(r, ['ES', 'es'])),
       'EE': (r) => toNumberOrDash(findValue(r, ['EE', 'ee'])),
-      'Overall': (r) => {
-        const calc = calcWeightedScore(r);
-        return calc != null ? toNumberOrDash(calc) : '-';
-      },
+      'Overall': (r) => toNumberOrDash(findValue(r, ['Overall', 'overall', 'Overall Score', 'overall_score', 'score', 'Score'])),
       'Submission Time': (r) => {
         const raw = findValue(r, ['submission_time', 'SubmissionTime', 'date', 'Date', 'updated', 'update_date', 'updated_at']);
         if (!raw) return '-';
@@ -182,10 +179,13 @@ async function renderLeaderboard() {
 
     // Sort by overall score desc if available
     const sorted = [...rows].sort((a, b) => {
-      const ca = calcWeightedScore(a);
-      const cb = calcWeightedScore(b);
-      const va = (typeof ca === 'number' && !Number.isNaN(ca)) ? ca : -Infinity;
-      const vb = (typeof cb === 'number' && !Number.isNaN(cb)) ? cb : -Infinity;
+      const getOverall = (r) => {
+        const v = findValue(r, ['Overall', 'overall', 'Overall Score', 'overall_score', 'score', 'Score']);
+        const n = typeof v === 'string' ? Number(v) : v;
+        return (typeof n === 'number' && !Number.isNaN(n)) ? n : -Infinity;
+      };
+      const va = getOverall(a);
+      const vb = getOverall(b);
       return vb - va;
     });
 
